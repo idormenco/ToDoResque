@@ -3,12 +3,14 @@ using Api.Models.Requests;
 using Api.Models.Responses;
 using Domain.Entities;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ToDoController(TodoDbContext db) : ControllerBase
 {
     /// <summary>Get all todo items.</summary>

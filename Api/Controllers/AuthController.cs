@@ -6,11 +6,13 @@ using System.Text;
 using Api.Models.Requests;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[AllowAnonymous]
 public class AuthController(
     TodoDbContext context,
     IConfiguration configuration) : ControllerBase
