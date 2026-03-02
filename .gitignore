@@ -487,3 +487,5 @@ $RECYCLE.BIN/
 
 local-disk-uploads
 todoresque.db
+todoresque.db-shm
+todoresque.db-wal
