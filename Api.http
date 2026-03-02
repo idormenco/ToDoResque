@@ -1,0 +1,81 @@
+@ToDoResque_HostAddress = http://localhost:5157
+@Token = your_jwt_token_here
+
+### Auth
+
+### Login – get JWT (copy token from response into @Token above for subsequent requests)
+POST {{ToDoResque_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "your_password"
+}
+
+###
+
+### ToDo
+
+### Get all todo items
+GET {{ToDoResque_HostAddress}}/api/todo
+Authorization: Bearer {{Token}}
+Accept: application/json
+
+###
+
+### Get todo by id
+GET {{ToDoResque_HostAddress}}/api/todo/1
+Authorization: Bearer {{Token}}
+Accept: application/json
+
+###
+
+### Create a todo item
+POST {{ToDoResque_HostAddress}}/api/todo
+Authorization: Bearer {{Token}}
+Content-Type: application/json
+
+{
+  "name": "My new task"
+}
+
+###
+
+### Update a todo item
+PUT {{ToDoResque_HostAddress}}/api/todo/1
+Authorization: Bearer {{Token}}
+Content-Type: application/json
+
+{
+  "name": "Updated task name"
+}
+
+###
+
+### Delete a todo item
+DELETE {{ToDoResque_HostAddress}}/api/todo/1
+Authorization: Bearer {{Token}}
+
+###
+
+### Mark todo as complete
+PATCH {{ToDoResque_HostAddress}}/api/todo/1/complete
+Authorization: Bearer {{Token}}
+Accept: application/json
+
+###
+
+### Bulk create todo items
+POST {{ToDoResque_HostAddress}}/api/todo/bulk
+Authorization: Bearer {{Token}}
+Content-Type: application/json
+
+{
+  "items": [
+    { "name": "First task" },
+    { "name": "Second task" },
+    { "name": "Third task" }
+  ]
+}
+
+###
