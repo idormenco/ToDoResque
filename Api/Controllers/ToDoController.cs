@@ -39,16 +39,27 @@ public class ToDoController(TodoDbContext db) : ControllerBase
     {
         var userId = HttpContext.GetUserId();
         if (userId is null)
+        {
             return Unauthorized();
+        }
 
         var item = new TodoItem
         {
             Name = request.Name,
             UserId = userId.Value
         };
+
         db.TodoItems.Add(item);
         await db.SaveChangesAsync(cancellationToken);
-        return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
+
+        var todoItemModel = new TodoItemModel()
+        {
+            Id = item.Id,
+            Name = item.Name,
+            IsComplete = item.IsComplete,
+        };
+
+        return CreatedAtAction(nameof(GetById), new { id = item.Id }, todoItemModel);
     }
 
     /// <summary>Update an existing todo item.</summary>
